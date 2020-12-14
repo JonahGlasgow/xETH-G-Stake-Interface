@@ -1,31 +1,10 @@
-# $COM Staking Interface v1.0.0 (UI Forked From Uniswap) 
+# $xETH-G Staking Interface v1.0.0 (UI Forked From Uniswap) 
 
 [![Lint](https://github.com/Uniswap/uniswap-interface/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-interface/actions?query=workflow%3ALint)
 [![Tests](https://github.com/Uniswap/uniswap-interface/workflows/Tests/badge.svg)](https://github.com/Uniswap/uniswap-interface/actions?query=workflow%3ATests)
 [![Styled With Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 
-An open source interface for $COM staking pools.
-
-- Website: [https://www.$COM.finance/](https://www.$COM.finance/)
-- Interface: [TBA]()
-- Docs: [TBA]()
-- Twitter: [@com_token](https://twitter.com/com_token)
-- Reddit: [TBA]()
-- Email: [TBA]()
-- Telegram: [Community Token Chat](https://t.me/com_token)
-- Whitepaper: [TBA]()
-
-## Accessing the $COM Interface
-
-To access the $COM Interface, use an IPFS gateway link from the
-[latest release](https://github.com/Uniswap/uniswap-interface/releases/latest), 
-or visit [$COM.finance](https://www.$COM.finance/).
-
-## Listing a token
-
-Please see the
-[@uniswap/default-token-list](https://github.com/uniswap/default-token-list) 
-repository.
+An open source interface for $xETH-G staking pools.
 
 ## Development
 
