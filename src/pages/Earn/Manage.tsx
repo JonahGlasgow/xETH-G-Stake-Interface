@@ -12,7 +12,7 @@ import { TYPE, ExternalLink } from '../../theme'
 
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
-import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
+import { ButtonPrimary} from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
 import { useStakingInfo } from '../../state/stake/hooks'
 import UnstakingModal from '../../components/earn/UnstakingModal'
@@ -27,7 +27,7 @@ import { useTotalSupply } from '../../data/TotalSupply'
 import { useSinglePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
 import useUSDCPrice from '../../utils/useUSDCPrice'
-import { BIG_INT_ZERO } from '../../constants'
+//import { BIG_INT_ZERO } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -287,16 +287,7 @@ export default function Manage({
                 <div>
                   <TYPE.black color={'black'}>Your Unclaimed xETH-G</TYPE.black>
                 </div>
-                {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
-                  <ButtonEmpty
-                    padding="8px"
-                    borderRadius="8px"
-                    width="fit-content"
-                    onClick={() => setShowClaimRewardModal(true)}
-                  >
-                    Claim
-                  </ButtonEmpty>
-                )}
+                
               </RowBetween>
               <RowBetween style={{ alignItems: 'baseline' }}>
                 <TYPE.largeHeader fontSize={36} fontWeight={600} color={'black'}>
