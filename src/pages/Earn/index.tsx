@@ -54,7 +54,23 @@ export default function Earn() {
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit xETH-G tokens to receive xETH-G, rewards are first come first serve!
+                Deposit xETH-G tokens to receive xETH-G!
+                </TYPE.white>
+              </RowBetween>{' '}
+              <RowBetween>
+                <TYPE.white fontSize={14}>
+Staked tokens are eligible for rebases, which can compound. Your staked balance only reflects your original staked amount. The additional compounded rebase tokens are stored in the backend, and will be distributed when you withdraw after your lock period expires.
+
+                </TYPE.white>
+              </RowBetween>{' '}
+              <RowBetween>
+                <TYPE.white fontSize={14}>
+Each time you deposit additional tokens from the same address, your lock period resets! Please stake from a different address to avoid this.
+                </TYPE.white>
+              </RowBetween>{' '}
+              <RowBetween>
+                <TYPE.white fontSize={14}>
+If you withdraw early, you will lose your staking rewards and rebases!
                 </TYPE.white>
               </RowBetween>{' '}
               <ExternalLink
