@@ -59,7 +59,12 @@ export default function Earn() {
               </RowBetween>{' '}
               <RowBetween>
                 <TYPE.white fontSize={14}>
-Staked tokens are eligible for rebases, which can compound. Your staked balance only reflects your original staked amount. The additional compounded rebase tokens are stored in the backend, and will be distributed when you withdraw after your lock period expires.
+Staked tokens are eligible for rebases, which can compound. Your staked balance only reflects your original staked amount.
+                </TYPE.white>
+              </RowBetween>{' '}
+              <RowBetween>
+                <TYPE.white fontSize={14}>
+The additional compounded rebase tokens are stored in the backend, and will be distributed when you withdraw after your lock period expires.
 
                 </TYPE.white>
               </RowBetween>{' '}
