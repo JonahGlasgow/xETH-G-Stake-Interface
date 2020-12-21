@@ -1,9 +1,11 @@
 import React from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
-import { STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
+import { STAKING_REWARDS_INFO, useStakingInfo} from '../../state/stake/hooks'
+import { STAKING_REWARDS_INFO_2, useStakingInfo2} from '../../state/stake/hooks2'
 import { TYPE, ExternalLink } from '../../theme'
 import PoolCard from '../../components/earn/PoolCard'
+import PoolCard2 from '../../components/earn/PoolCard2'
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { Countdown } from './Countdown'
@@ -32,6 +34,7 @@ const PoolSection = styled.div`
 export default function Earn() {
   const { chainId } = useActiveWeb3React()
   const stakingInfos = useStakingInfo()
+  const stakingInfos2 = useStakingInfo2()
 
   const DataRow = styled(RowBetween)`
     ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -40,6 +43,7 @@ export default function Earn() {
   `
 
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
+  const stakingRewardsExist_2 = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO_2[chainId]?.length ?? 0) > 0)
 
   return (
     <PageWrapper gap="lg" justify="center" id="earn-page">
@@ -98,6 +102,8 @@ If you withdraw early, you will lose your staking rewards and rebases!
           <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
         </DataRow>
         <PoolSection>
+        <TYPE.white fontSize={14}>30 Day Staking Pool</TYPE.white>
+
           {stakingRewardsExist && stakingInfos?.length === 0 ? (
             <Loader style={{ margin: 'auto' }} />
           ) : !stakingRewardsExist ? (
@@ -106,6 +112,19 @@ If you withdraw early, you will lose your staking rewards and rebases!
             stakingInfos?.map(stakingInfo => {
               // need to sort by added liquidity here
               return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />
+            })
+          )}
+
+          <TYPE.white fontSize={14}>7 Day Staking Pool</TYPE.white>
+
+           {stakingRewardsExist_2 && stakingInfos2?.length === 0 ? (
+            <Loader style={{ margin: 'auto' }} />
+          ) : !stakingRewardsExist ? (
+            'No active rewards'
+          ) : (
+            stakingInfos2?.map(stakingInfo2 => {
+              // need to sort by added liquidity here
+              return <PoolCard2 key={stakingInfo2.stakingRewardAddress} stakingInfo={stakingInfo2} />
             })
           )}
         </PoolSection>

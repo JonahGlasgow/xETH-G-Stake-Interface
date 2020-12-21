@@ -31,7 +31,7 @@ export const REWARDS_DURATION_DAYS = 30
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     }
  */
-export const STAKING_REWARDS_INFO: {
+export const STAKING_REWARDS_INFO_2: {
   [chainId in ChainId]?: {
     tokens: [Token]
     stakingRewardAddress: string
@@ -44,14 +44,14 @@ export const STAKING_REWARDS_INFO: {
   //  },
     {
       tokens: [xETHG[ChainId.MAINNET]],
-      stakingRewardAddress: '0x304D4F1abB117aaB97C6AC34b97fE14348A3Be10'
+      stakingRewardAddress: '0xF41DDECbBcd1AbfE0B8834b8f6023760cA5A41FC'
     }
   ]
 }
 
 const StakingCollectionAddress = '0xC8B2D5B86E412E59625F45D069F7436F07B22b0B'
 
-export interface StakingInfo {
+export interface StakingInfo2 {
   stakingCollectionAddress: string
   // the address of the reward contract
   stakingRewardAddress: string
@@ -81,13 +81,13 @@ export interface StakingInfo {
 }
 
 // gets the staking info from the network for the active chain id
-export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
+export function useStakingInfo2(pairToFilterBy?: Pair | null): StakingInfo2[] {
   const { chainId, account } = useActiveWeb3React()
 
   const info = useMemo(
     () =>
       chainId
-        ? STAKING_REWARDS_INFO[chainId]?.filter(stakingRewardInfo =>
+        ? STAKING_REWARDS_INFO_2[chainId]?.filter(stakingRewardInfo =>
             pairToFilterBy === undefined
               ? true
               : pairToFilterBy === null
@@ -130,7 +130,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   return useMemo(() => {
     if (!chainId || !xethg) return []
 
-    return rewardsAddresses.reduce<StakingInfo[]>((memo, rewardsAddress, index) => {
+    return rewardsAddresses.reduce<StakingInfo2[]>((memo, rewardsAddress, index) => {
       // these two are dependent on account
       const balanceState = balances[index]
       const earnedAmountState = earnedAmounts[index]
@@ -212,7 +212,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 export function useTotalUniEarned(): TokenAmount | undefined {
   const { chainId } = useActiveWeb3React()
   const xethg = chainId ? xETHG[chainId] : undefined
-  const stakingInfos = useStakingInfo()
+  const stakingInfos = useStakingInfo2()
 
   return useMemo(() => {
     if (!xethg) return undefined

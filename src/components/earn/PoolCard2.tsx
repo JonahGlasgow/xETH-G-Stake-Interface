@@ -6,7 +6,7 @@ import { TYPE, StyledInternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
 import { ButtonPrimary } from '../Button'
-import { StakingInfo } from '../../state/stake/hooks'
+import { StakingInfo2 } from '../../state/stake/hooks2'
 import { useColor } from '../../hooks/useColor'
 import { currencyId } from '../../utils/currencyId'
 import { Break, CardNoise, CardBGImage } from './styled'
@@ -71,7 +71,7 @@ const BottomSection = styled.div<{ showBackground: boolean }>`
   z-index: 1;
 `
 
-export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) {
+export default function PoolCard2({ stakingInfo }: { stakingInfo: StakingInfo2 }) {
   const token0 = stakingInfo.tokens[0]
  // const token1 = stakingInfo.tokens[1]
 
@@ -120,7 +120,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           xETH-G
         </TYPE.white>
 
-        <StyledInternalLink to={`/xETHG/SimpleStaking/${currencyId(currency0)}`} style={{ width: '100%' }}>
+        <StyledInternalLink to={`/xETHG/SimpleStaking2/${currencyId(currency0)}`} style={{ width: '100%' }}>
           <ButtonPrimary padding="8px" borderRadius="8px">
             {isStaking ? 'Manage' : 'Deposit'}
           </ButtonPrimary>
@@ -133,7 +133,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           <TYPE.white>
             {valueOfTotalStakedAmountInUSDC
               ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? ''} 30 Days`}
+              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? ''} 7 Days`}
           </TYPE.white>
         </RowBetween>
         <RowBetween>

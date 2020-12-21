@@ -14,7 +14,7 @@ import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { ButtonPrimary} from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
-import { useStakingInfo } from '../../state/stake/hooks'
+import { useStakingInfo2 } from '../../state/stake/hooks2'
 import UnstakingModal from '../../components/earn/UnstakingModal'
 import ClaimRewardModal from '../../components/earn/ClaimRewardModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -85,7 +85,7 @@ const DataRow = styled(RowBetween)`
   `};
 `
  
-export default function Manage({
+export default function Manage2({
   match: {
     params: { currencyIdA}
   }
@@ -97,7 +97,7 @@ export default function Manage({
   const tokenA = wrappedCurrency(currencyA ?? undefined, chainId)
  // const tokenB = wrappedCurrency(currencyB ?? undefined, chainId)
 
-  const [, stakingTokenPairA] = useSinglePair(tokenA)
+//const [, stakingTokenPairA] = useSinglePair(tokenA)
   const [, stakingTokenPairB] = useSinglePair(tokenA)
   
   //const stakingInfo =  useStakingInfo(stakingTokenPair)?.[0 && 1]
@@ -111,10 +111,13 @@ export default function Manage({
  // const [, stakingTokenPairC] = useSinglePair(tokenA)
  // const stakingInfoC =  useStakingInfo(stakingTokenPair)?.[2]
 
-  let stakingInfoA =  useStakingInfo(stakingTokenPairA)?.[0]
-  // let stakingInfoB =  useStakingInfo(stakingTokenPairB)?.[1]
+  //const stakingInfoA =  useStakingInfo(stakingTokenPairA)?.[0]
+  const stakingInfoB =  useStakingInfo2(stakingTokenPairB)?.[0]
   
-  const stakingInfo = stakingInfoA
+
+  const stakingInfo = stakingInfoB
+  
+
  
   // detect existing unstaked LP position to show add button if none found
   let userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
@@ -136,21 +139,7 @@ export default function Manage({
   // get WETH value of staked LP tokens
   const totalSupplyOfStakingToken = useTotalSupply(stakingInfo?.stakedAmount?.token)
   let valueOfTotalStakedAmountInWETH: TokenAmount | undefined
-  if (totalSupplyOfStakingToken && stakingTokenPairA && !stakingTokenPairB && stakingInfo && WETH) {
-    // take the total amount of LP tokens staked, multiply by ETH value of all LP tokens, divide by all LP tokens
-    valueOfTotalStakedAmountInWETH = new TokenAmount(
-      WETH,
-      JSBI.divide(
-        JSBI.multiply(
-          JSBI.multiply(stakingInfo.totalStakedAmount.raw, stakingTokenPairA.reserveOf(WETH).raw),
-          JSBI.BigInt(1) // this is b/c the value of LP shares are ~double the value of the WETH they entitle owner to
-        ),
-        totalSupplyOfStakingToken.raw
-      )
-    )
-  }
-
-  if (totalSupplyOfStakingToken && stakingTokenPairB && !stakingTokenPairA && stakingInfo && WETH) {
+  if (totalSupplyOfStakingToken && stakingTokenPairB  && stakingInfo && WETH) {
     // take the total amount of LP tokens staked, multiply by ETH value of all LP tokens, divide by all LP tokens
     valueOfTotalStakedAmountInWETH = new TokenAmount(
       WETH,
@@ -200,7 +189,7 @@ export default function Manage({
             <TYPE.body fontSize={24} fontWeight={500}>
               {valueOfTotalStakedAmountInUSDC
                 ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? ''} 30 Days`}
+                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? ''} 7 Days`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
